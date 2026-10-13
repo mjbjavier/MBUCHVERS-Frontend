@@ -43,3 +43,34 @@ async function atenderCliente(nombreCliente) {
     // Como el cliente ya se borró del servidor, volvemos a cargar la lista limpia
     cargarClientes();
 }
+
+async function simularLlamada() {
+    // 1. Capturamos lo que el usuario escribió
+    let nombreEscrito = document.getElementById("input-nombre").value;
+    let motivoSeleccionado = document.getElementById("input-motivo").value;
+
+    // Validamos que no envíen clientes sin nombre
+    if (nombreEscrito === "") {
+        alert("El cliente debe tener un nombre.");
+        return;
+    }
+
+    // 2. Empaquetamos los datos en un diccionario de JavaScript (Objeto)
+    let paqueteDatos = {
+        nombre: nombreEscrito,
+        motivo: motivoSeleccionado
+    };
+
+    // 3. Enviamos el paquete por internet a Python usando POST
+    await fetch("http://127.0.0.1:8000/clientes", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Avisamos que enviamos un JSON
+        },
+        body: JSON.stringify(paqueteDatos) // Convertimos el objeto a texto plano
+    });
+
+    // 4. Limpiamos la caja de texto y recargamos las tarjetas
+    document.getElementById("input-nombre").value = "";
+    cargarClientes();
+}
