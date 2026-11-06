@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUCHVERS - Copiloto Comercial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-200 flex items-center justify-center min-h-screen p-4">
+
+    <!-- EL BLOC DE NOTAS INTELIGENTE (Copiloto) -->
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md border-t-4 border-emerald-500">
+        
+        <h1 class="text-2xl font-bold text-slate-800 mb-2 text-center">BUCHVERS 🛡️</h1>
+        <p class="text-slate-500 text-sm text-center mb-6">Copiloto Estratégico y Compliance</p>
+
+        <!-- 1. La Solicitud -->
+        <div class="mb-4">
+            <label class="block text-slate-700 text-sm font-bold mb-2">1. Solicitud del Cliente (El Problema):</label>
+            <textarea id="solicitudCliente" rows="2" placeholder="Ej. El cliente llama porque se le cae el internet..." 
+                   class="w-full border border-slate-300 rounded p-2 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"></textarea>
+        </div>
+
+        <!-- 2. La Solución -->
+        <div class="mb-4">
+            <label class="block text-slate-700 text-sm font-bold mb-2">2. Solución Aplicada:</label>
+            <textarea id="solucionAplicada" rows="2" placeholder="Ej. Reinicio de router y actualización de firmware..." 
+                   class="w-full border border-slate-300 rounded p-2 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"></textarea>
+        </div>
+
+        <!-- 3. Producto a Configurar (Para el Ofrecimiento) -->
+        <div class="mb-6">
+            <label class="block text-slate-700 text-sm font-bold mb-2">3. Producto a Ofrecer / Configurar:</label>
+            <select id="productoOfrecido" 
+                    class="w-full border border-slate-300 rounded p-2 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 bg-white">
+                <option value="Fibra Optica">Upgrade a Fibra Óptica (Requiere guion de cobertura)</option>
+                <option value="Plan Movil">Línea Móvil Adicional (Requiere protección de datos)</option>
+                <option value="Television">Paquete TV Premium (Requiere permanencia)</option>
+            </select>
+        </div>
+
+        <!-- El Nuevo Botón Perezoso -->
+        <button onclick="generarGuiaSegura()" 
+                class="w-full bg-emerald-600 text-white font-bold py-3 px-4 rounded hover:bg-emerald-700 transition duration-300 shadow-md flex justify-center items-center gap-2">
+            <span>Generar Guía de Cierre Seguro 🦥</span>
+        </button>
+
+    </div>
+
+</body>
+</html>
