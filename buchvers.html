@@ -44,8 +44,63 @@
                 class="w-full bg-emerald-600 text-white font-bold py-3 px-4 rounded hover:bg-emerald-700 transition duration-300 shadow-md flex justify-center items-center gap-2">
             <span>Generar Guía de Cierre Seguro 🦥</span>
         </button>
+        <!-- Área de Resultados (Oculta por defecto) -->
+        <div id="resultadoGuia" class="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded hidden">
+            <h3 class="font-bold text-emerald-800 text-sm mb-2">📋 Guía de Cierre Sugerida:</h3>
+            <p id="textoGuia" class="text-sm text-emerald-700 whitespace-pre-wrap"></p>
+            <!-- Botón para copiar al CRM -->
+        <button onclick="copiarResumenCRM()" 
+                class="mt-4 w-full bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-900 transition duration-300 text-sm flex justify-center items-center gap-2">
+            📋 Copiar Resumen para Cosmos
+        </button>
+        </div>
 
     </div>
+    <!-- El "Cerebro" de la aplicación -->
+    <script>
+        function generarGuiaSegura() {
+            // 1. Atrapamos lo que el asesor escribió
+            const solicitud = document.getElementById('solicitudCliente').value;
+            const solucion = document.getElementById('solucionAplicada').value;
+            const producto = document.getElementById('productoOfrecido').value;
+
+            // 2. Validación de seguridad: no dejar campos vacíos
+            if(!solicitud || !solucion) {
+                alert("⚠️ Arquitecto, por favor llena la Solicitud y la Solución antes de continuar.");
+                return;
+            }
+
+            // 3. Nuestro Motor de Reglas (Simulando la IA por ahora)
+            let guiaLegal = "";
+            
+            if(producto === "Fibra Optica") {
+                guiaLegal = "⚠️ ALERTA DE COMPLIANCE (FIBRA):\n\n1. Validar viabilidad técnica de la zona en Cosmos.\n2. Leer obligatoriamente el guion de cobertura.\n3. Informar los tiempos de instalación antes de cerrar.";
+            } else if(producto === "Plan Movil") {
+                guiaLegal = "⚠️ ALERTA DE COMPLIANCE (MÓVIL):\n\n1. ¡NO OLVIDAR! Leer guion de Protección de Datos Personales (Habeas Data).\n2. Validar identidad del titular.\n3. Enviar SMS para firma digital.";
+            } else {
+                guiaLegal = "⚠️ ALERTA DE COMPLIANCE (TV):\n\n1. Confirmar titularidad.\n2. Informar sobre la cláusula de permanencia obligatoria.";
+            }
+
+            // 4. Inyectar el resultado en la pantalla y quitar el estado "oculto"
+            document.getElementById('textoGuia').innerText = guiaLegal;
+            document.getElementById('resultadoGuia').classList.remove('hidden');
+        }
+        function copiarResumenCRM() {
+        const solicitud = document.getElementById('solicitudCliente').value;
+        const solucion = document.getElementById('solucionAplicada').value;
+        const producto = document.getElementById('productoOfrecido').options[document.getElementById('productoOfrecido').selectedIndex].text;
+        
+        // Construimos la plantilla exacta que le gusta a los líderes
+        const plantillaCRM = `=== REPORTE MBUCHVERS ===\n🗣️ SOLICITUD: ${solicitud}\n✅ SOLUCIÓN: ${solucion}\n📦 PRODUCTO GESTIONADO: ${producto}\n=========================`;
+        
+        // Usamos la API del navegador para copiar al portapapeles
+        navigator.clipboard.writeText(plantillaCRM).then(() => {
+            alert("¡Resumen copiado al portapapeles! 🚀 Listo para pegar en Cosmos.");
+        }).catch(err => {
+            alert("Error al copiar: " + err);
+        });
+    }
+    </script>
 
 </body>
 </html>
